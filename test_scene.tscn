@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://ce0qnd3xvd6qf"]
+
+[ext_resource type="PackedScene" uid="uid://ckdgyvxlj8k67" path="res://player.tscn" id="1_ia1lp"]
+[ext_resource type="PackedScene" uid="uid://bohartawxi01f" path="res://basic_spy.tscn" id="2_sasra"]
+
+[node name="TestScene" type="Node2D" unique_id=210918002]
+
+[node name="Player" parent="." unique_id=2079360264 instance=ExtResource("1_ia1lp")]
+position = Vector2(560, 248)
+
+[node name="BasicSpy" parent="." unique_id=233415787 instance=ExtResource("2_sasra")]
+position = Vector2(280, 184)

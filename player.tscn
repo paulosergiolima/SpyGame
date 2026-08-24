@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://ckdgyvxlj8k67"]
+
+[ext_resource type="Texture2D" uid="uid://cdm6l645ff0j5" path="res://icon.svg" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://de88pxi6bhn44" path="res://player.gd" id="1_onrkg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vm6i5"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3wf7"]
+size = Vector2(128, 128)
+
+[node name="Player" type="CharacterBody2D" unique_id=2079360264 groups=["player"]]
+motion_mode = 1
+script = ExtResource("1_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=573791264]
+texture = ExtResource("1_4flbx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2141090119]
+shape = SubResource("RectangleShape2D_vm6i5")
+metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1382370383]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1184360880]
+shape = SubResource("RectangleShape2D_h3wf7")
+debug_color = Color(0.26366347, 0.6339788, 0, 0.41960785)
+
+[node name="SpyFollow" type="Node2D" parent="." unique_id=1627272143]
+position = Vector2(-184, 0)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
