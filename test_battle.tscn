@@ -1,0 +1,107 @@
+[gd_scene format=4 uid="uid://tri1advn5tkv"]
+
+[ext_resource type="Texture2D" uid="uid://cdm6l645ff0j5" path="res://icon.svg" id="1_1dg5m"]
+[ext_resource type="PackedScene" uid="uid://bohartawxi01f" path="res://basic_spy.tscn" id="2_wwoy5"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wwoy5"]
+texture = ExtResource("1_1dg5m")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_vm6i5"]
+sources/0 = SubResource("TileSetAtlasSource_wwoy5")
+
+[node name="TestBattle" type="Node2D" unique_id=1195068700]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=97113628]
+tile_map_data = PackedByteArray("AAD6/wMAAAACAAIAAAD7/wMAAAACAAIAAAD8/wMAAAACAAIAAAD9/wMAAAACAAIAAAD+/wMAAAACAAIAAAD//wMAAAACAAIAAAAAAAMAAAACAAIAAAABAAMAAAACAAIAAAACAAMAAAACAAIAAAADAAMAAAACAAIAAAAEAAMAAAACAAIAAAAFAAMAAAACAAIAAAAGAAMAAAACAAIAAAAHAAMAAAACAAIAAAAIAAMAAAACAAIAAAAJAAMAAAACAAIAAAAKAAMAAAACAAIAAAALAAMAAAACAAIAAAAMAAMAAAACAAIAAAANAAMAAAACAAIAAAAOAAMAAAACAAIAAAAPAAMAAAACAAIAAAAQAAMAAAACAAIAAAARAAMAAAACAAIAAAASAAMAAAACAAIAAAATAAMAAAACAAIAAAAUAAMAAAACAAIAAAAVAAMAAAACAAIAAAAWAAMAAAACAAIAAAAWAAIAAAACAAIAAAAWAAEAAAACAAIAAAAWAAAAAAACAAIAAAAWAP//AAACAAIAAAAWAP7/AAACAAIAAAAWAP3/AAACAAIAAAAWAPz/AAACAAIAAAAWAPv/AAACAAIAAAAWAPr/AAACAAIAAAAWAPn/AAACAAIAAAAWAPj/AAACAAIAAAAWAPf/AAACAAIAAAAWAPb/AAACAAIAAAAWAPX/AAACAAIAAAAWAPT/AAACAAIAAAAWAPP/AAACAAIAAAAWAPL/AAACAAIAAAAVAPL/AAACAAIAAAAUAPL/AAACAAIAAAATAPL/AAACAAIAAAASAPL/AAACAAIAAAARAPL/AAACAAIAAAAQAPL/AAACAAIAAAAPAPL/AAACAAIAAAAOAPL/AAACAAIAAAANAPL/AAACAAIAAAAMAPL/AAACAAIAAAALAPL/AAACAAIAAAAKAPL/AAACAAIAAAAJAPL/AAACAAIAAAAIAPL/AAACAAIAAAAHAPL/AAACAAIAAAAGAPL/AAACAAIAAAAFAPL/AAACAAIAAAAEAPL/AAACAAIAAAADAPL/AAACAAIAAAACAPL/AAACAAIAAAABAPL/AAACAAIAAAAAAPL/AAACAAIAAAD///L/AAACAAIAAAD+//L/AAACAAIAAAD9//L/AAACAAIAAAD8//L/AAACAAIAAAD7//L/AAACAAIAAAD6//L/AAACAAIAAAD5//L/AAACAAIAAAD5//P/AAACAAIAAAD5//T/AAACAAIAAAD5//X/AAACAAIAAAD5//b/AAACAAIAAAD5//f/AAACAAIAAAD5//j/AAACAAIAAAD5//n/AAACAAIAAAD5//r/AAACAAIAAAD5//7/AAACAAIAAAD5////AAACAAIAAAD5/wAAAAACAAIAAAD5/wEAAAACAAIAAAD5/wIAAAACAAIAAAD5/wMAAAACAAIAAAA=")
+tile_set = SubResource("TileSet_vm6i5")
+
+[node name="Ally1" type="Node2D" parent="." unique_id=738835387]
+position = Vector2(-64, 0)
+
+[node name="Ally2" type="Node2D" parent="." unique_id=278595875]
+position = Vector2(-64, -64)
+
+[node name="Ally3" type="Node2D" parent="." unique_id=90054013]
+position = Vector2(-64, -128)
+
+[node name="Ally4" type="Node2D" parent="." unique_id=1561828524]
+position = Vector2(-64, -192)
+
+[node name="Enemy1" type="Node2D" parent="." unique_id=1299208650]
+position = Vector2(256, 0)
+
+[node name="Enem2" type="Node2D" parent="." unique_id=1489897043]
+position = Vector2(256, -64)
+
+[node name="Enemy3" type="Node2D" parent="." unique_id=1846711009]
+position = Vector2(256, -128)
+
+[node name="Enemy4" type="Node2D" parent="." unique_id=1731006867]
+position = Vector2(256, -192)
+
+[node name="BasicSpy" parent="." unique_id=233415787 instance=ExtResource("2_wwoy5")]
+position = Vector2(-224, -232)
