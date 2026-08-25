@@ -11,8 +11,6 @@ size = Vector2(160, 160)
 
 [node name="BasicSpy" type="CharacterBody2D" unique_id=233415787]
 scale = Vector2(0.3, 0.3)
-collision_layer = 0
-collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_v7w05")
 

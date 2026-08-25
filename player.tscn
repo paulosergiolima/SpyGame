@@ -30,4 +30,6 @@ debug_color = Color(0.26366347, 0.6339788, 0, 0.41960785)
 [node name="SpyFollow" type="Node2D" parent="." unique_id=1627272143]
 position = Vector2(-184, 0)
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1439888234]
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

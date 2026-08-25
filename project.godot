@@ -23,6 +23,8 @@ window/stretch/aspect="expand"
 [global_group]
 
 player=""
+positions=""
+allies=""
 
 [input]
 

@@ -1,7 +1,9 @@
 [gd_scene format=4 uid="uid://tri1advn5tkv"]
 
 [ext_resource type="Texture2D" uid="uid://cdm6l645ff0j5" path="res://icon.svg" id="1_1dg5m"]
+[ext_resource type="Script" uid="uid://cu6px0uk7d8x7" path="res://test_battle.gd" id="1_u67t4"]
 [ext_resource type="PackedScene" uid="uid://bohartawxi01f" path="res://basic_spy.tscn" id="2_wwoy5"]
+[ext_resource type="PackedScene" uid="uid://ckdgyvxlj8k67" path="res://player.tscn" id="3_d1u53"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wwoy5"]
 texture = ExtResource("1_1dg5m")
@@ -73,22 +75,26 @@ texture = ExtResource("1_1dg5m")
 [sub_resource type="TileSet" id="TileSet_vm6i5"]
 sources/0 = SubResource("TileSetAtlasSource_wwoy5")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vm6i5"]
+size = Vector2(20, 48)
+
 [node name="TestBattle" type="Node2D" unique_id=1195068700]
+script = ExtResource("1_u67t4")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=97113628]
 tile_map_data = PackedByteArray("AAD6/wMAAAACAAIAAAD7/wMAAAACAAIAAAD8/wMAAAACAAIAAAD9/wMAAAACAAIAAAD+/wMAAAACAAIAAAD//wMAAAACAAIAAAAAAAMAAAACAAIAAAABAAMAAAACAAIAAAACAAMAAAACAAIAAAADAAMAAAACAAIAAAAEAAMAAAACAAIAAAAFAAMAAAACAAIAAAAGAAMAAAACAAIAAAAHAAMAAAACAAIAAAAIAAMAAAACAAIAAAAJAAMAAAACAAIAAAAKAAMAAAACAAIAAAALAAMAAAACAAIAAAAMAAMAAAACAAIAAAANAAMAAAACAAIAAAAOAAMAAAACAAIAAAAPAAMAAAACAAIAAAAQAAMAAAACAAIAAAARAAMAAAACAAIAAAASAAMAAAACAAIAAAATAAMAAAACAAIAAAAUAAMAAAACAAIAAAAVAAMAAAACAAIAAAAWAAMAAAACAAIAAAAWAAIAAAACAAIAAAAWAAEAAAACAAIAAAAWAAAAAAACAAIAAAAWAP//AAACAAIAAAAWAP7/AAACAAIAAAAWAP3/AAACAAIAAAAWAPz/AAACAAIAAAAWAPv/AAACAAIAAAAWAPr/AAACAAIAAAAWAPn/AAACAAIAAAAWAPj/AAACAAIAAAAWAPf/AAACAAIAAAAWAPb/AAACAAIAAAAWAPX/AAACAAIAAAAWAPT/AAACAAIAAAAWAPP/AAACAAIAAAAWAPL/AAACAAIAAAAVAPL/AAACAAIAAAAUAPL/AAACAAIAAAATAPL/AAACAAIAAAASAPL/AAACAAIAAAARAPL/AAACAAIAAAAQAPL/AAACAAIAAAAPAPL/AAACAAIAAAAOAPL/AAACAAIAAAANAPL/AAACAAIAAAAMAPL/AAACAAIAAAALAPL/AAACAAIAAAAKAPL/AAACAAIAAAAJAPL/AAACAAIAAAAIAPL/AAACAAIAAAAHAPL/AAACAAIAAAAGAPL/AAACAAIAAAAFAPL/AAACAAIAAAAEAPL/AAACAAIAAAADAPL/AAACAAIAAAACAPL/AAACAAIAAAABAPL/AAACAAIAAAAAAPL/AAACAAIAAAD///L/AAACAAIAAAD+//L/AAACAAIAAAD9//L/AAACAAIAAAD8//L/AAACAAIAAAD7//L/AAACAAIAAAD6//L/AAACAAIAAAD5//L/AAACAAIAAAD5//P/AAACAAIAAAD5//T/AAACAAIAAAD5//X/AAACAAIAAAD5//b/AAACAAIAAAD5//f/AAACAAIAAAD5//j/AAACAAIAAAD5//n/AAACAAIAAAD5//r/AAACAAIAAAD5//7/AAACAAIAAAD5////AAACAAIAAAD5/wAAAAACAAIAAAD5/wEAAAACAAIAAAD5/wIAAAACAAIAAAD5/wMAAAACAAIAAAA=")
 tile_set = SubResource("TileSet_vm6i5")
 
-[node name="Ally1" type="Node2D" parent="." unique_id=738835387]
+[node name="Ally1" type="Node2D" parent="." unique_id=738835387 groups=["positions"]]
 position = Vector2(-64, 0)
 
-[node name="Ally2" type="Node2D" parent="." unique_id=278595875]
+[node name="Ally2" type="Node2D" parent="." unique_id=278595875 groups=["positions"]]
 position = Vector2(-64, -64)
 
-[node name="Ally3" type="Node2D" parent="." unique_id=90054013]
+[node name="Ally3" type="Node2D" parent="." unique_id=90054013 groups=["positions"]]
 position = Vector2(-64, -128)
 
-[node name="Ally4" type="Node2D" parent="." unique_id=1561828524]
+[node name="Ally4" type="Node2D" parent="." unique_id=1561828524 groups=["positions"]]
 position = Vector2(-64, -192)
 
 [node name="Enemy1" type="Node2D" parent="." unique_id=1299208650]
@@ -103,5 +109,29 @@ position = Vector2(256, -128)
 [node name="Enemy4" type="Node2D" parent="." unique_id=1731006867]
 position = Vector2(256, -192)
 
-[node name="BasicSpy" parent="." unique_id=233415787 instance=ExtResource("2_wwoy5")]
+[node name="BasicSpy" parent="." unique_id=233415787 groups=["allies"] instance=ExtResource("2_wwoy5")]
 position = Vector2(-224, -232)
+followingPlayer = true
+
+[node name="BasicSpy2" parent="." unique_id=793218525 groups=["allies"] instance=ExtResource("2_wwoy5")]
+position = Vector2(-224, -136)
+followingPlayer = true
+
+[node name="BasicSpy3" parent="." unique_id=184739833 groups=["allies"] instance=ExtResource("2_wwoy5")]
+position = Vector2(-234, -16)
+followingPlayer = true
+
+[node name="BasicSpy4" parent="." unique_id=807726217 groups=["allies"] instance=ExtResource("2_wwoy5")]
+position = Vector2(-225, 72)
+followingPlayer = true
+
+[node name="Player" parent="." unique_id=2079360264 instance=ExtResource("3_d1u53")]
+position = Vector2(-360, -112)
+
+[node name="Door" type="Area2D" parent="." unique_id=1415481192]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door" unique_id=154397872]
+position = Vector2(-104, -56)
+shape = SubResource("RectangleShape2D_vm6i5")
+
+[connection signal="area_entered" from="Door" to="." method="_on_door_area_entered"]

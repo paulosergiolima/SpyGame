@@ -4,7 +4,7 @@ var bought: bool
 var price: int
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-var followingPlayer: bool = false
+@export var followingPlayer: bool = false
 
 
 func _physics_process(delta: float) -> void:
