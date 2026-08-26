@@ -3,7 +3,7 @@ signal playerIsClose(spy)
 var bought: bool
 var price: int
 @export var health = 100
-@export var power = 100
+@export var power = 120
 @export var defense = 100
 const SPEED = 300.0
 var battleMode: bool = false

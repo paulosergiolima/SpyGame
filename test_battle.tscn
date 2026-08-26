@@ -138,4 +138,5 @@ position = Vector2(216.00003, 2.9999847)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=196534487]
 enabled = false
 
+[connection signal="player_won" from="." to="." method="_on_player_won"]
 [connection signal="area_entered" from="Door" to="." method="_on_door_area_entered"]
