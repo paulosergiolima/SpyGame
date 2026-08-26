@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cu6px0uk7d8x7" path="res://test_battle.gd" id="1_u67t4"]
 [ext_resource type="PackedScene" uid="uid://bohartawxi01f" path="res://basic_spy.tscn" id="2_wwoy5"]
 [ext_resource type="PackedScene" uid="uid://ckdgyvxlj8k67" path="res://player.tscn" id="3_d1u53"]
+[ext_resource type="PackedScene" uid="uid://t2s2o1a08e6u" path="res://basic_enemy.tscn" id="5_cb8w6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wwoy5"]
 texture = ExtResource("1_1dg5m")
@@ -97,18 +98,6 @@ position = Vector2(-64, -128)
 [node name="Ally4" type="Node2D" parent="." unique_id=1561828524 groups=["positions"]]
 position = Vector2(-64, -192)
 
-[node name="Enemy1" type="Node2D" parent="." unique_id=1299208650]
-position = Vector2(256, 0)
-
-[node name="Enem2" type="Node2D" parent="." unique_id=1489897043]
-position = Vector2(256, -64)
-
-[node name="Enemy3" type="Node2D" parent="." unique_id=1846711009]
-position = Vector2(256, -128)
-
-[node name="Enemy4" type="Node2D" parent="." unique_id=1731006867]
-position = Vector2(256, -192)
-
 [node name="BasicSpy" parent="." unique_id=233415787 groups=["allies"] instance=ExtResource("2_wwoy5")]
 position = Vector2(-224, -232)
 followingPlayer = true
@@ -133,5 +122,20 @@ position = Vector2(-360, -112)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door" unique_id=154397872]
 position = Vector2(-104, -56)
 shape = SubResource("RectangleShape2D_vm6i5")
+
+[node name="BasicEnemy" parent="." unique_id=304625094 groups=["enemies"] instance=ExtResource("5_cb8w6")]
+position = Vector2(216, -192)
+
+[node name="BasicEnemy2" parent="." unique_id=2144259083 groups=["enemies"] instance=ExtResource("5_cb8w6")]
+position = Vector2(216.00003, -128.00002)
+
+[node name="BasicEnemy3" parent="." unique_id=769430971 groups=["enemies"] instance=ExtResource("5_cb8w6")]
+position = Vector2(216.00003, 2.9999847)
+
+[node name="BasicEnemy4" parent="." unique_id=58686819 groups=["enemies"] instance=ExtResource("5_cb8w6")]
+position = Vector2(216.00003, -64.000015)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=196534487]
+enabled = false
 
 [connection signal="area_entered" from="Door" to="." method="_on_door_area_entered"]

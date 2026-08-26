@@ -9,12 +9,15 @@ size = Vector2(128, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h3wf7"]
 size = Vector2(160, 160)
 
+[sub_resource type="LabelSettings" id="LabelSettings_cb8w6"]
+font_size = 65
+
 [node name="BasicSpy" type="CharacterBody2D" unique_id=233415787]
 scale = Vector2(0.3, 0.3)
 motion_mode = 1
 script = ExtResource("1_v7w05")
 
-[node name="Label" type="Label" parent="." unique_id=357022870]
+[node name="Price" type="Label" parent="." unique_id=357022870]
 visible = false
 offset_left = -32.0
 offset_top = -96.0
@@ -33,6 +36,14 @@ shape = SubResource("RectangleShape2D_vm6i5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1764744858]
 shape = SubResource("RectangleShape2D_h3wf7")
 debug_color = Color(0.959721, 2.8878452e-07, 0.52274275, 0.41960785)
+
+[node name="Health" type="Label" parent="." unique_id=1432445843]
+offset_left = -53.333332
+offset_top = 80.0
+offset_right = 58.666668
+offset_bottom = 170.0
+text = "100"
+label_settings = SubResource("LabelSettings_cb8w6")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -25,6 +25,7 @@ window/stretch/aspect="expand"
 player=""
 positions=""
 allies=""
+enemies=""
 
 [input]
 
