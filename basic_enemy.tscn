@@ -3,8 +3,20 @@
 [ext_resource type="Texture2D" uid="uid://cdm6l645ff0j5" path="res://icon.svg" id="1_rwafm"]
 [ext_resource type="Script" uid="uid://c25f3cca1d40d" path="res://basic_enemy.gd" id="2_m2rku"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_vm6i5"]
+font_size = 45
+
 [node name="BasicEnemy" type="Sprite2D" unique_id=304625094]
 rotation = 1.5707964
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_rwafm")
 script = ExtResource("2_m2rku")
+
+[node name="Health" type="Label" parent="." unique_id=1106988637]
+offset_left = 80.0
+offset_top = 26.666662
+offset_right = 157.0
+offset_bottom = 89.666664
+rotation = -1.5707964
+text = "100"
+label_settings = SubResource("LabelSettings_vm6i5")

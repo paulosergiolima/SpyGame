@@ -129,11 +129,11 @@ position = Vector2(216, -192)
 [node name="BasicEnemy2" parent="." unique_id=2144259083 groups=["enemies"] instance=ExtResource("5_cb8w6")]
 position = Vector2(216.00003, -128.00002)
 
-[node name="BasicEnemy3" parent="." unique_id=769430971 groups=["enemies"] instance=ExtResource("5_cb8w6")]
-position = Vector2(216.00003, 2.9999847)
-
-[node name="BasicEnemy4" parent="." unique_id=58686819 groups=["enemies"] instance=ExtResource("5_cb8w6")]
+[node name="BasicEnemy3" parent="." unique_id=58686819 groups=["enemies"] instance=ExtResource("5_cb8w6")]
 position = Vector2(216.00003, -64.000015)
+
+[node name="BasicEnemy4" parent="." unique_id=769430971 groups=["enemies"] instance=ExtResource("5_cb8w6")]
+position = Vector2(216.00003, 2.9999847)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=196534487]
 enabled = false
