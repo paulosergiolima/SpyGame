@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ig0blpvjoukt"]
+
+[ext_resource type="Texture2D" uid="uid://ciqjgskr6ueq0" path="res://assets/wall-wood.png" id="1_ba8gm"]
+
+[node name="Door" type="Sprite2D" unique_id=1885358366]
+texture = ExtResource("1_ba8gm")

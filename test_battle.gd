@@ -9,10 +9,14 @@ var playerTurn: bool = false
 var currentSpy
 
 var player_scene = preload("res://player.tscn")
+var spy_scene = preload("res://basic_spy.tscn")
+
+var freePosition
 
 func _on_door_area_entered(area: Area2D) -> void:
 	$Camera2D.enabled = true
 	var player = get_tree().get_nodes_in_group("player")[0]
+	player.visible = false
 	player.queue_free()
 
 	var spies = get_tree().get_nodes_in_group("allies")
@@ -20,6 +24,7 @@ func _on_door_area_entered(area: Area2D) -> void:
 	for n in spies.size():
 		spies[n].battleMode = true
 		spies[n].global_position = positions[n].global_position
+		positions[n].taken = true
 		spies[n].rotation = 0
 		spies[n].velocity = Vector2.ZERO
 
@@ -29,7 +34,7 @@ func _on_door_area_entered(area: Area2D) -> void:
 func _input(event: InputEvent) -> void:
 	if not playerTurn:
 		return
-
+	var playerSize = get_tree().get_nodes_in_group("allies").size()
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	if enemies.is_empty():
 		return
@@ -42,19 +47,39 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("down"):
 		chosenEnemy.global_rotation = PI / 2
 		goDown(enemies.size())
-	elif event.is_action_pressed("buySpy"):
-		print("Vida passada: ", chosenEnemy.health)
+	elif event.is_action_pressed("attack"):
 		chosenEnemy.health -= (currentSpy.power - chosenEnemy.defense)
-		print("Vida atual depois do ataque: ", chosenEnemy.health)
 		chosenEnemy.updateHealth()
 		chosenEnemy.global_rotation = PI/2
-
-		if chosenEnemy.health <= 0:
-			chosenEnemy.remove_from_group("enemies")
-			chosenEnemy.queue_free()
-
 		playerTurn = false
+		enemies = get_tree().get_nodes_in_group("enemies")
+		print(enemies)
+		if enemies.is_empty():
+			print("The player has won")
+			player_won.emit()
 		turn_finished.emit()
+	elif event.is_action_pressed("buySpy") and playerSize < 4:
+		print(playerSize)
+		print("has he bought?")
+		var new_spy = spy_scene.instantiate()
+		new_spy.health = chosenEnemy.health
+		new_spy.power = chosenEnemy.power
+		new_spy.defense = chosenEnemy.defense
+		for position in get_tree().get_nodes_in_group("positions"):
+			if !position.taken:
+				position.taken = false
+				freePosition = position
+		new_spy.global_position = freePosition.global_position
+		new_spy.battleMode = true
+		new_spy.add_to_group("allies")
+		add_child(new_spy)
+		chosenEnemy.queue_free()
+	elif event.is_action_pressed("buySpy") and playerSize >= 4:
+		return
+
+	if chosenEnemy.health <= 0:
+		chosenEnemy.remove_from_group("enemies")
+		chosenEnemy.queue_free()
 		return
 
 	enemies = get_tree().get_nodes_in_group("enemies")
@@ -82,9 +107,6 @@ func combatLoop() -> void:
 		if allies.is_empty():
 			player_lost.emit()
 			return
-		if enemies.is_empty():
-			player_won.emit()
-			return
 
 		var combatants = []
 		combatants.append_array(allies)
@@ -97,24 +119,27 @@ func combatLoop() -> void:
 			if get_tree().get_nodes_in_group("allies").is_empty():
 				player_lost.emit()
 				return
-			if get_tree().get_nodes_in_group("enemies").is_empty():
-				player_won.emit()
-				return
 
 			if unit.is_in_group("allies"):
-				print("We got ally turn")
 				unit.global_rotation = 90
 				allyAttack(unit)
 				await turn_finished
 				if is_instance_valid(unit):
 					unit.global_rotation = 0
 			else:
-				print("We got enemy turn")
 				unit.attack()
 
 
 func _on_player_won() -> void:
-	add_child(player_scene)
+	print("The player has won")
+	var new_player = player_scene.instantiate()
+	var allies = get_tree().get_nodes_in_group("allies")
+	for spy in allies:
+		spy.battleMode = false
+		spy.velocity = Vector2.ZERO
+	new_player.global_position = $PlayerSpawn.global_position
+	new_player.velocity = Vector2.ZERO
+	add_child(new_player)
 	$Camera2D.enabled = false
 	
 	pass # Replace with function body.

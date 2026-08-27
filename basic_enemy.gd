@@ -12,6 +12,7 @@ func _ready() -> void:
 func updateHealth():
 	$Health.text = str(health)
 	if health <= 0:
+		remove_from_group("enemies")
 		queue_free()
 
 

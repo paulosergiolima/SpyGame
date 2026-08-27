@@ -6,7 +6,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_vm6i5"]
 font_size = 45
 
-[node name="BasicEnemy" type="Sprite2D" unique_id=304625094]
+[node name="BasicEnemy" type="Sprite2D" unique_id=304625094 groups=["enemies"]]
 rotation = 1.5707964
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_rwafm")
