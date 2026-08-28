@@ -1,6 +1,80 @@
-[gd_scene format=3 uid="uid://c1f6ssjb0xubs"]
+[gd_scene format=4 uid="uid://c1f6ssjb0xubs"]
 
 [ext_resource type="Script" uid="uid://cip7chxr1385e" path="res://position.gd" id="1_55sxe"]
+[ext_resource type="Texture2D" uid="uid://cq55kvlup0s24" path="res://cena/tiledodiabo2.png" id="2_xq75e"]
+[ext_resource type="Texture2D" uid="uid://tpflrkh4p4xk" path="res://cena/paredes.png" id="3_5b6sk"]
+[ext_resource type="Texture2D" uid="uid://vtufx2qmw5w8" path="res://cena/paredes1.png" id="4_t8se1"]
+[ext_resource type="Texture2D" uid="uid://umtbimnxe5y0" path="res://cena/tiledodiabo.png" id="5_ihsqi"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ryegq"]
+texture = ExtResource("2_xq75e")
+texture_region_size = Vector2i(128, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nmp1d"]
+texture = ExtResource("3_5b6sk")
+texture_region_size = Vector2i(64, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(-26, 37)
+0:0/0/z_index = 1
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ciam"]
+texture = ExtResource("4_t8se1")
+texture_region_size = Vector2i(128, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xmusl"]
+texture = ExtResource("5_ihsqi")
+texture_region_size = Vector2i(39, 39)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_uymos"]
+tile_shape = 1
+tile_layout = 4
+tile_size = Vector2i(128, 32)
+sources/2 = SubResource("TileSetAtlasSource_ryegq")
+sources/3 = SubResource("TileSetAtlasSource_nmp1d")
+sources/4 = SubResource("TileSetAtlasSource_2ciam")
+sources/5 = SubResource("TileSetAtlasSource_xmusl")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mgsr1"]
+texture = ExtResource("2_xq75e")
+texture_region_size = Vector2i(128, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r76pr"]
+texture = ExtResource("3_5b6sk")
+texture_region_size = Vector2i(64, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(-26, 37)
+0:0/0/z_index = 1
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_150p0"]
+texture = ExtResource("4_t8se1")
+texture_region_size = Vector2i(52, 110)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_cophi"]
+tile_layout = 4
+tile_size = Vector2i(48, 13)
+sources/2 = SubResource("TileSetAtlasSource_mgsr1")
+sources/3 = SubResource("TileSetAtlasSource_r76pr")
+sources/4 = SubResource("TileSetAtlasSource_150p0")
 
 [node name="Position" type="Node2D" unique_id=1069729204 groups=["positions"]]
+rotation = -0.036616497
 script = ExtResource("1_55sxe")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1739728722]
+texture_filter = 1
+position = Vector2(156, -24.000008)
+rotation = 0.027806275
+scale = Vector2(1.0293417, 1.0768255)
+tile_map_data = PackedByteArray("AAD//wAAAgAAAAAAAAD/////AgAAAAAAAAAAAP//AgAAAAAAAAAAAAAAAgAAAAAAAAABAAAAAgAAAAAAAAABAP//AgAAAAAAAAABAP7/AgAAAAAAAAAAAP7/AgAAAAAAAAD///7/AgAAAAAAAAD+////AgAAAAAAAAD+/wAAAgAAAAAAAAD+//7/AgAAAAAAAAD9////AgAAAAAAAAD9//7/AgAAAAAAAAD9/wAAAgAAAAAAAAACAP7/AgAAAAAAAAACAP//AgAAAAAAAAACAAAAAgAAAAAAAAA=")
+tile_set = SubResource("TileSet_uymos")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=132303977]
+texture_filter = 1
+position = Vector2(-8, -57.000008)
+rotation = 0.037341896
+tile_map_data = PackedByteArray("AAD+////BAAAAAAAAAD///7/BAAAAAAAAAABAPz/BAAAAAAAAAACAPv/BAAAAAAAAAAAAP3/BAAAAAAAAAADAPr/BAAAAAAAAAD9/wAABAAAAAAAAAD8/wEABAAAAAAAAAA=")
+tile_set = SubResource("TileSet_cophi")

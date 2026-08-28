@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ckdgyvxlj8k67" path="res://player.tscn" id="3_d1u53"]
 [ext_resource type="PackedScene" uid="uid://t2s2o1a08e6u" path="res://basic_enemy.tscn" id="5_cb8w6"]
 [ext_resource type="PackedScene" uid="uid://c1f6ssjb0xubs" path="res://position.tscn" id="6_i3a13"]
-[ext_resource type="Texture2D" uid="uid://umtbimnxe5y0" path="res://assets/tiledodiabo.png" id="6_llqio"]
+[ext_resource type="Texture2D" uid="uid://umtbimnxe5y0" path="res://cena/tiledodiabo.png" id="6_llqio"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vm6i5"]
 size = Vector2(20, 48)
