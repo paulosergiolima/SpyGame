@@ -11,6 +11,10 @@ rotation = 1.5707964
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_rwafm")
 script = ExtResource("2_m2rku")
+health = null
+power = null
+defense = null
+price = null
 
 [node name="Health" type="Label" parent="." unique_id=1106988637]
 offset_left = 80.0

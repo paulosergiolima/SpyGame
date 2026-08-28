@@ -10,6 +10,13 @@ var battleMode: bool = false
 const JUMP_VELOCITY = -400.0
 @export var followingPlayer: bool = false
 
+func _ready() -> void:
+	health = (randi_range(0,100) + randi_range(0,100) + randi_range(0,100)) / 3
+	power = (randi_range(0,100) + randi_range(0,100) + randi_range(0,100)) / 3
+	defense = (randi_range(0, 100) + randi_range(0, 100) + randi_range(0,100)) / 3
+	price = health/3 + power/3 + defense/3
+	$Health.text = str(health)
+
 
 func _physics_process(delta: float) -> void:
 	if !battleMode:

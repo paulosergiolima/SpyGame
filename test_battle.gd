@@ -48,7 +48,7 @@ func _input(event: InputEvent) -> void:
 		chosenEnemy.global_rotation = PI / 2
 		goDown(enemies.size())
 	elif event.is_action_pressed("attack"):
-		chosenEnemy.health -= (currentSpy.power - chosenEnemy.defense)
+		chosenEnemy.health -= clampi((currentSpy.power - chosenEnemy.defense),0,1000)
 		chosenEnemy.updateHealth()
 		chosenEnemy.global_rotation = PI/2
 		playerTurn = false
@@ -74,6 +74,11 @@ func _input(event: InputEvent) -> void:
 		new_spy.add_to_group("allies")
 		add_child(new_spy)
 		chosenEnemy.queue_free()
+		enemies = get_tree().get_nodes_in_group("enemies")
+		print(enemies)
+		if enemies.is_empty():
+			print("The player has won")
+			player_won.emit()
 	elif event.is_action_pressed("buySpy") and playerSize >= 4:
 		return
 
