@@ -5,18 +5,22 @@ extends Sprite2D
 @export var defense: int = 100
 @export var price: int = 100
 
+func recalculate_price() -> void:
+	price = int((health / 3.0) + (power / 3.0) + (defense / 3.0))
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	health = (randi_range(0, 100) + randi_range(0, 100) + randi_range(0,100)) / 3
-	power = (randi_range(0, 100) + randi_range(0, 100) + randi_range(0,100)) / 3
-	defense = (randi_range(0, 100) + randi_range(0, 100) + randi_range(0,100)) / 3
-	price =  (health / 3) + (power / 3) + (defense / 3)
+	#health = (randi_range(0, 100) + randi_range(0, 100) + randi_range(0,100)) / 3
+	#power = (randi_range(0, 100) + randi_range(0, 100) + randi_range(0,100)) / 3
+	#defense = (randi_range(0, 100) + randi_range(0, 100) + randi_range(0,100)) / 3
+	#recalculate_price()
 	$Health.text = str(health)
 	pass # Replace with function body.
-	
+
 func updateHealth():
 	$Health.text = str(health)
+	recalculate_price()
 	if health <= 0:
 		remove_from_group("enemies")
 		queue_free()
@@ -29,6 +33,6 @@ func attack():
 	var playerUnits = get_tree().get_nodes_in_group("allies")
 	var randomNumber = randi_range(0, playerUnits.size() - 1)
 	var currentEnemy = playerUnits[randomNumber]
-	playerUnits[randomNumber].health = currentEnemy.health - clampi((power - currentEnemy.defense),0,1000)
+	var dano = power * (100.0 / (100.0 + playerUnits[randomNumber].defense))
+	playerUnits[randomNumber].health = currentEnemy.health - clampi(dano,0,1000)
 	playerUnits[randomNumber].updateHealth()
-	

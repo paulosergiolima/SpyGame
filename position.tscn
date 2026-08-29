@@ -2,6 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cip7chxr1385e" path="res://position.gd" id="1_55sxe"]
 
-[node name="Position" type="Node2D" unique_id=1069729204 groups=["positions"]]
+[node name="Position" type="Node2D" unique_id=1069729204]
 rotation = -0.036616497
 script = ExtResource("1_55sxe")

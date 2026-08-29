@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cu6px0uk7d8x7" path="res://test_battle.gd" id="1_u67t4"]
 [ext_resource type="PackedScene" uid="uid://bohartawxi01f" path="res://basic_spy.tscn" id="2_wwoy5"]
-[ext_resource type="PackedScene" uid="uid://t2s2o1a08e6u" path="res://basic_enemy.tscn" id="5_cb8w6"]
 [ext_resource type="Texture2D" uid="uid://cq55kvlup0s24" path="res://cena/tiledodiabo2.png" id="6_fq64j"]
 [ext_resource type="PackedScene" uid="uid://c1f6ssjb0xubs" path="res://position.tscn" id="6_i3a13"]
 [ext_resource type="Texture2D" uid="uid://umtbimnxe5y0" path="res://cena/tiledodiabo.png" id="6_llqio"]
@@ -78,34 +77,6 @@ followingPlayer = true
 position = Vector2(-168, 118.99999)
 followingPlayer = true
 
-[node name="BasicEnemy" parent="." unique_id=304625094 instance=ExtResource("5_cb8w6")]
-position = Vector2(147, -57.999985)
-health = 100
-power = 120
-defense = 100
-price = 100
-
-[node name="BasicEnemy2" parent="." unique_id=2144259083 instance=ExtResource("5_cb8w6")]
-position = Vector2(289, -41.000015)
-health = 100
-power = 120
-defense = 100
-price = 100
-
-[node name="BasicEnemy3" parent="." unique_id=58686819 instance=ExtResource("5_cb8w6")]
-position = Vector2(216.00003, -64.000015)
-health = 100
-power = 120
-defense = 100
-price = 100
-
-[node name="BasicEnemy4" parent="." unique_id=769430971 instance=ExtResource("5_cb8w6")]
-position = Vector2(191, -15.000008)
-health = 100
-power = 120
-defense = 100
-price = 100
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=196534487]
 z_index = 2
 position = Vector2(53, -100)
@@ -113,16 +84,16 @@ zoom = Vector2(1.75, 1.75)
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
-[node name="Position" parent="." unique_id=1069729204 instance=ExtResource("6_i3a13")]
+[node name="Position" parent="." unique_id=1069729204 groups=["positions"] instance=ExtResource("6_i3a13")]
 position = Vector2(-59, 45)
 
-[node name="Position2" parent="." unique_id=2146862001 instance=ExtResource("6_i3a13")]
+[node name="Position2" parent="." unique_id=2146862001 groups=["positions"] instance=ExtResource("6_i3a13")]
 position = Vector2(-71, -2)
 
-[node name="Position3" parent="." unique_id=1005056990 instance=ExtResource("6_i3a13")]
+[node name="Position3" parent="." unique_id=1005056990 groups=["positions"] instance=ExtResource("6_i3a13")]
 position = Vector2(-118, 19)
 
-[node name="Position4" parent="." unique_id=1646326194 instance=ExtResource("6_i3a13")]
+[node name="Position4" parent="." unique_id=1646326194 groups=["positions"] instance=ExtResource("6_i3a13")]
 position = Vector2(-19, 20)
 
 [node name="PlayerSpawn" type="Node2D" parent="." unique_id=903334556]
@@ -151,6 +122,18 @@ offset_top = -279.0
 offset_right = 379.0
 offset_bottom = -256.0
 text = "Dinheiros: 100"
+
+[node name="EnemyPosition" parent="." unique_id=719691325 groups=["enemyPositions"] instance=ExtResource("6_i3a13")]
+position = Vector2(133.99998, -128)
+
+[node name="EnemyPosition2" parent="." unique_id=360028131 groups=["enemyPositions"] instance=ExtResource("6_i3a13")]
+position = Vector2(192.99998, -90)
+
+[node name="EnemyPosition3" parent="." unique_id=1788093476 groups=["enemyPositions"] instance=ExtResource("6_i3a13")]
+position = Vector2(176.99998, -172)
+
+[node name="EnemyPosition4" parent="." unique_id=1375790524 groups=["enemyPositions"] instance=ExtResource("6_i3a13")]
+position = Vector2(236, -139)
 
 [connection signal="moneyChanged" from="." to="." method="_on_money_changed"]
 [connection signal="player_won" from="." to="." method="_on_player_won"]

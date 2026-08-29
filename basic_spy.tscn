@@ -26,14 +26,18 @@ offset_top = -96.0
 offset_right = 29.0
 offset_bottom = -73.0
 text = "10 reais"
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=16128191]
 texture = ExtResource("1_ivvnv")
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1332408157]
 shape = SubResource("RectangleShape2D_vm6i5")
+metadata/_edit_lock_ = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2057246278]
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1764744858]
 shape = SubResource("RectangleShape2D_h3wf7")
@@ -46,6 +50,21 @@ offset_right = 58.666668
 offset_bottom = 170.0
 text = "100"
 label_settings = SubResource("LabelSettings_cb8w6")
+metadata/_edit_lock_ = true
+
+[node name="Power" type="Label" parent="." unique_id=1766854912]
+offset_left = 90.5957
+offset_top = -77.5541
+offset_right = 130.5957
+offset_bottom = -54.5541
+text = "100"
+
+[node name="Defense" type="Label" parent="." unique_id=816886839]
+offset_left = 97.04695
+offset_top = -51.67955
+offset_right = 137.04695
+offset_bottom = -28.67955
+text = "100"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

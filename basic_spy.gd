@@ -18,7 +18,8 @@ func _ready() -> void:
 		defense = (randi_range(0, 100) + randi_range(0, 100) + randi_range(0,100)) / 3
 		price = health/3 + power/3 + defense/3
 	$Health.text = str(health)	
-		
+	$Power.text = str(power)
+	$Defense.text = str(defense)
 func updateHealth():
 	$Health.text = str(health)
 	if health <= 0:

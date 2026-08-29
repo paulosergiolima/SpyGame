@@ -30,6 +30,7 @@ player=""
 positions=""
 allies=""
 enemies=""
+enemyPositions=""
 
 [input]
 

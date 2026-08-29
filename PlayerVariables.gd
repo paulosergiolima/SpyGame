@@ -1,11 +1,15 @@
 extends Node
-@export var money = 100
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@export var money: int = 100
 
+func can_afford_player(cost: int) -> bool:
+	return money >= cost
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func spend_player(cost: int) -> bool:
+	if not can_afford_player(cost):
+		return false
+	money -= cost
+	return true
+
+func reward(amount: int) -> void:
+	money += max(0, amount)
