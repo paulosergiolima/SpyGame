@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cu6px0uk7d8x7" path="res://test_battle.gd" id="1_u67t4"]
 [ext_resource type="PackedScene" uid="uid://bohartawxi01f" path="res://basic_spy.tscn" id="2_wwoy5"]
-[ext_resource type="PackedScene" uid="uid://ckdgyvxlj8k67" path="res://player.tscn" id="3_d1u53"]
 [ext_resource type="PackedScene" uid="uid://t2s2o1a08e6u" path="res://basic_enemy.tscn" id="5_cb8w6"]
 [ext_resource type="Texture2D" uid="uid://cq55kvlup0s24" path="res://cena/tiledodiabo2.png" id="6_fq64j"]
 [ext_resource type="PackedScene" uid="uid://c1f6ssjb0xubs" path="res://position.tscn" id="6_i3a13"]
@@ -64,7 +63,7 @@ sources/2 = SubResource("TileSetAtlasSource_jf4la")
 sources/3 = SubResource("TileSetAtlasSource_03jr5")
 sources/4 = SubResource("TileSetAtlasSource_oy0w2")
 
-[node name="TestBattle" type="Node2D" unique_id=1195068700]
+[node name="BattleScene" type="Node2D" unique_id=1195068700]
 script = ExtResource("1_u67t4")
 
 [node name="BasicSpy" parent="." unique_id=233415787 groups=["allies"] instance=ExtResource("2_wwoy5")]
@@ -78,9 +77,6 @@ followingPlayer = true
 [node name="BasicSpy3" parent="." unique_id=184739833 groups=["allies"] instance=ExtResource("2_wwoy5")]
 position = Vector2(-168, 118.99999)
 followingPlayer = true
-
-[node name="Player" parent="." unique_id=2079360264 instance=ExtResource("3_d1u53")]
-position = Vector2(-360, -112)
 
 [node name="BasicEnemy" parent="." unique_id=304625094 instance=ExtResource("5_cb8w6")]
 position = Vector2(147, -57.999985)
@@ -111,8 +107,11 @@ defense = 100
 price = 100
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=196534487]
-enabled = false
-metadata/_edit_lock_ = true
+z_index = 2
+position = Vector2(53, -100)
+zoom = Vector2(1.75, 1.75)
+editor_draw_limits = true
+editor_draw_drag_margin = true
 
 [node name="Position" parent="." unique_id=1069729204 instance=ExtResource("6_i3a13")]
 position = Vector2(-59, 45)
@@ -129,21 +128,29 @@ position = Vector2(-19, 20)
 [node name="PlayerSpawn" type="Node2D" parent="." unique_id=903334556]
 position = Vector2(-584, -64)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=699902899]
+[node name="Floor" type="TileMapLayer" parent="." unique_id=699902899]
 texture_filter = 1
 position = Vector2(156, -24.000008)
 rotation = 0.027806275
 scale = Vector2(1.0293417, 1.0768255)
-tile_map_data = PackedByteArray("AAD//wAAAgAAAAAAAAD/////AgAAAAAAAAAAAP//AgAAAAAAAAAAAAAAAgAAAAAAAAABAAAAAgAAAAAAAAABAP//AgAAAAAAAAABAP7/AgAAAAAAAAAAAP7/AgAAAAAAAAD///7/AgAAAAAAAAD+////AgAAAAAAAAD+/wAAAgAAAAAAAAD+//7/AgAAAAAAAAD9////AgAAAAAAAAD9//7/AgAAAAAAAAD9/wAAAgAAAAAAAAACAP7/AgAAAAAAAAACAP//AgAAAAAAAAACAAAAAgAAAAAAAAD8//7/AgAAAAAAAAD8////AgAAAAAAAAD8/wAAAgAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD//wAAAgAAAAAAAAD/////AgAAAAAAAAAAAP//AgAAAAAAAAAAAAAAAgAAAAAAAAABAAAAAgAAAAAAAAABAP//AgAAAAAAAAABAP7/AgAAAAAAAAAAAP7/AgAAAAAAAAD///7/AgAAAAAAAAD+////AgAAAAAAAAD+/wAAAgAAAAAAAAD+//7/AgAAAAAAAAD9////AgAAAAAAAAD9//7/AgAAAAAAAAD9/wAAAgAAAAAAAAACAP7/AgAAAAAAAAACAP//AgAAAAAAAAACAAAAAgAAAAAAAAD8//7/AgAAAAAAAAD8////AgAAAAAAAAD8/wAAAgAAAAAAAAADAP7/AgAAAAAAAAADAP//AgAAAAAAAAADAAAAAgAAAAAAAAAEAP7/AgAAAAAAAAAEAP//AgAAAAAAAAAEAAAAAgAAAAAAAAD7//7/AgAAAAAAAAD7////AgAAAAAAAAD7/wAAAgAAAAAAAAD6//7/AgAAAAAAAAD6////AgAAAAAAAAD6/wAAAgAAAAAAAAD6/wEAAgAAAAAAAAD7/wEAAgAAAAAAAAD8/wEAAgAAAAAAAAD+/wEAAgAAAAAAAAD9/wEAAgAAAAAAAAD//wEAAgAAAAAAAAACAAEAAgAAAAAAAAABAAEAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAIAAgAAAAAAAAD//wIAAgAAAAAAAAD+/wIAAgAAAAAAAAD+/wMAAgAAAAAAAAD9/wIAAgAAAAAAAAD8/wIAAgAAAAAAAAD8/wMAAgAAAAAAAAD7/wMAAgAAAAAAAAD7/wIAAgAAAAAAAAD6/wIAAgAAAAAAAAD6/wMAAgAAAAAAAAD9/wMAAgAAAAAAAAD9/wQAAgAAAAAAAAD+/wQAAgAAAAAAAAD//wMAAgAAAAAAAAAAAAMAAgAAAAAAAAABAAIAAgAAAAAAAAD8/wQAAgAAAAAAAAD9/wUAAgAAAAAAAAD+/wUAAgAAAAAAAAD//wQAAgAAAAAAAAD6//3/AgAAAAAAAAD7//3/AgAAAAAAAAD8//3/AgAAAAAAAAD9//3/AgAAAAAAAAD9//z/AgAAAAAAAAD+//z/AgAAAAAAAAD+//3/AgAAAAAAAAD///3/AgAAAAAAAAD///z/AgAAAAAAAAAAAPz/AgAAAAAAAAAAAP3/AgAAAAAAAAABAP3/AgAAAAAAAAACAP3/AgAAAAAAAAACAPz/AgAAAAAAAAADAPz/AgAAAAAAAAAEAPz/AgAAAAAAAAAFAPz/AgAAAAAAAAAFAP3/AgAAAAAAAAAEAP3/AgAAAAAAAAADAP3/AgAAAAAAAAABAPz/AgAAAAAAAAD8//z/AgAAAAAAAAD+//v/AgAAAAAAAAD///v/AgAAAAAAAAAAAPv/AgAAAAAAAAAAAPr/AgAAAAAAAAABAPr/AgAAAAAAAAACAPr/AgAAAAAAAAADAPr/AgAAAAAAAAAEAPr/AgAAAAAAAAAFAPr/AgAAAAAAAAAGAPr/AgAAAAAAAAAGAPv/AgAAAAAAAAAFAPv/AgAAAAAAAAAEAPv/AgAAAAAAAAADAPv/AgAAAAAAAAACAPv/AgAAAAAAAAABAPv/AgAAAAAAAAD///r/AgAAAAAAAAD+//r/AgAAAAAAAAD9//v/AgAAAAAAAAD///n/AgAAAAAAAAAAAPn/AgAAAAAAAAABAPn/AgAAAAAAAAACAPn/AgAAAAAAAAADAPn/AgAAAAAAAAAEAPn/AgAAAAAAAAAFAPn/AgAAAAAAAAAGAPn/AgAAAAAAAAAHAPn/AgAAAAAAAAAHAPr/AgAAAAAAAAAHAPv/AgAAAAAAAAAGAP3/AgAAAAAAAAAGAPz/AgAAAAAAAAAFAP7/AgAAAAAAAAAIAPr/AgAAAAAAAAAHAPz/AgAAAAAAAAAFAPj/AgAAAAAAAAAEAPj/AgAAAAAAAAADAPj/AgAAAAAAAAACAPj/AgAAAAAAAAABAPj/AgAAAAAAAAAAAPj/AgAAAAAAAAABAPf/AgAAAAAAAAACAPf/AgAAAAAAAAADAPf/AgAAAAAAAAAEAPf/AgAAAAAAAAAEAPb/AgAAAAAAAAAFAPb/AgAAAAAAAAAGAPb/AgAAAAAAAAAGAPf/AgAAAAAAAAAFAPf/AgAAAAAAAAAGAPj/AgAAAAAAAAACAPb/AgAAAAAAAAADAPb/AgAAAAAAAAD5/wAAAgAAAAAAAAD5////AgAAAAAAAAD5/wEAAgAAAAAAAAD5/wIAAgAAAAAAAAD4/wAAAgAAAAAAAAD4/wEAAgAAAAAAAAAHAPj/AgAAAAAAAAAHAPf/AgAAAAAAAAAIAPj/AgAAAAAAAAAIAPn/AgAAAAAAAAAIAPv/AgAAAAAAAAAIAPz/AgAAAAAAAAAJAPn/AgAAAAAAAAAJAPr/AgAAAAAAAAA=")
 tile_set = SubResource("TileSet_htavv")
 metadata/_edit_lock_ = true
 
-[node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=863281569]
+[node name="Walls1" type="TileMapLayer" parent="." unique_id=863281569]
 texture_filter = 1
 position = Vector2(-8, -57.000008)
 rotation = 0.037341896
-tile_map_data = PackedByteArray("AAD+////BAAAAAAAAAD///7/BAAAAAAAAAABAPz/BAAAAAAAAAACAPv/BAAAAAAAAAAAAP3/BAAAAAAAAAADAPr/BAAAAAAAAAD9/wAABAAAAAAAAAD8/wEABAAAAAAAAAD7/wIABAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD5//P/BAAAAAAAAAD6//L/BAAAAAAAAAD7//H/BAAAAAAAAAD8//D/BAAAAAAAAAD9/+//BAAAAAAAAAD+/+7/BAAAAAAAAAD//+3/BAAAAAAAAAAAAOz/BAAAAAAAAAA=")
 tile_set = SubResource("TileSet_dw67t")
 metadata/_edit_lock_ = true
 
+[node name="CurrentMoney" type="Label" parent="." unique_id=1217025774]
+offset_left = 268.0
+offset_top = -279.0
+offset_right = 379.0
+offset_bottom = -256.0
+text = "Dinheiros: 100"
+
+[connection signal="moneyChanged" from="." to="." method="_on_money_changed"]
 [connection signal="player_won" from="." to="." method="_on_player_won"]
