@@ -10,6 +10,7 @@ size = Vector2(128, 128)
 size = Vector2(128, 128)
 
 [node name="Player" type="CharacterBody2D" unique_id=2079360264 groups=["player"]]
+rotation = 0.2443461
 motion_mode = 1
 script = ExtResource("1_onrkg")
 

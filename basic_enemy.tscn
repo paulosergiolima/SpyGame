@@ -7,7 +7,8 @@
 font_size = 45
 
 [node name="BasicEnemy" type="Sprite2D" unique_id=304625094 groups=["enemies"]]
-rotation = 1.5707964
+z_index = 1
+rotation = 1.9896754
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_rwafm")
 script = ExtResource("2_m2rku")

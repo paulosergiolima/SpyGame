@@ -4,60 +4,93 @@
 [ext_resource type="PackedScene" uid="uid://bohartawxi01f" path="res://basic_spy.tscn" id="2_wwoy5"]
 [ext_resource type="PackedScene" uid="uid://ckdgyvxlj8k67" path="res://player.tscn" id="3_d1u53"]
 [ext_resource type="PackedScene" uid="uid://t2s2o1a08e6u" path="res://basic_enemy.tscn" id="5_cb8w6"]
+[ext_resource type="Texture2D" uid="uid://cq55kvlup0s24" path="res://cena/tiledodiabo2.png" id="6_fq64j"]
 [ext_resource type="PackedScene" uid="uid://c1f6ssjb0xubs" path="res://position.tscn" id="6_i3a13"]
 [ext_resource type="Texture2D" uid="uid://umtbimnxe5y0" path="res://cena/tiledodiabo.png" id="6_llqio"]
+[ext_resource type="Texture2D" uid="uid://tpflrkh4p4xk" path="res://cena/paredes.png" id="7_nyux8"]
+[ext_resource type="Texture2D" uid="uid://vtufx2qmw5w8" path="res://cena/paredes1.png" id="8_xpn8t"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vm6i5"]
-size = Vector2(20, 48)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fq64j"]
+texture = ExtResource("6_fq64j")
+texture_region_size = Vector2i(128, 32)
+0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0bf6v"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nyux8"]
+texture = ExtResource("7_nyux8")
+texture_region_size = Vector2i(64, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(-26, 37)
+0:0/0/z_index = 1
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xpn8t"]
+texture = ExtResource("8_xpn8t")
+texture_region_size = Vector2i(128, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uw0r2"]
 texture = ExtResource("6_llqio")
 texture_region_size = Vector2i(39, 39)
 0:0/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_vm6i5"]
+[sub_resource type="TileSet" id="TileSet_htavv"]
 tile_shape = 1
-tile_size = Vector2i(32, 16)
-sources/0 = SubResource("TileSetAtlasSource_0bf6v")
+tile_layout = 4
+tile_size = Vector2i(128, 32)
+sources/2 = SubResource("TileSetAtlasSource_fq64j")
+sources/3 = SubResource("TileSetAtlasSource_nyux8")
+sources/4 = SubResource("TileSetAtlasSource_xpn8t")
+sources/5 = SubResource("TileSetAtlasSource_uw0r2")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jf4la"]
+texture = ExtResource("6_fq64j")
+texture_region_size = Vector2i(128, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_03jr5"]
+texture = ExtResource("7_nyux8")
+texture_region_size = Vector2i(64, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(-26, 37)
+0:0/0/z_index = 1
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oy0w2"]
+texture = ExtResource("8_xpn8t")
+texture_region_size = Vector2i(52, 110)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_dw67t"]
+tile_layout = 4
+tile_size = Vector2i(48, 13)
+sources/2 = SubResource("TileSetAtlasSource_jf4la")
+sources/3 = SubResource("TileSetAtlasSource_03jr5")
+sources/4 = SubResource("TileSetAtlasSource_oy0w2")
 
 [node name="TestBattle" type="Node2D" unique_id=1195068700]
 script = ExtResource("1_u67t4")
 
 [node name="BasicSpy" parent="." unique_id=233415787 groups=["allies"] instance=ExtResource("2_wwoy5")]
-position = Vector2(-224, -232)
+position = Vector2(-42, 149.99998)
 followingPlayer = true
-metadata/_edit_lock_ = true
 
 [node name="BasicSpy2" parent="." unique_id=793218525 groups=["allies"] instance=ExtResource("2_wwoy5")]
-position = Vector2(-224, -136)
+position = Vector2(-215.00002, 93.99999)
 followingPlayer = true
-metadata/_edit_lock_ = true
 
 [node name="BasicSpy3" parent="." unique_id=184739833 groups=["allies"] instance=ExtResource("2_wwoy5")]
-position = Vector2(-234, -16)
+position = Vector2(-168, 118.99999)
 followingPlayer = true
-metadata/_edit_lock_ = true
 
 [node name="Player" parent="." unique_id=2079360264 instance=ExtResource("3_d1u53")]
 position = Vector2(-360, -112)
-metadata/_edit_lock_ = true
-
-[node name="Door" type="Area2D" parent="." unique_id=1415481192]
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door" unique_id=154397872]
-position = Vector2(-104, -56)
-shape = SubResource("RectangleShape2D_vm6i5")
 
 [node name="BasicEnemy" parent="." unique_id=304625094 instance=ExtResource("5_cb8w6")]
-position = Vector2(216, -192)
+position = Vector2(147, -57.999985)
 health = 100
 power = 120
 defense = 100
 price = 100
 
 [node name="BasicEnemy2" parent="." unique_id=2144259083 instance=ExtResource("5_cb8w6")]
-position = Vector2(216.00003, -128.00002)
+position = Vector2(289, -41.000015)
 health = 100
 power = 120
 defense = 100
@@ -71,7 +104,7 @@ defense = 100
 price = 100
 
 [node name="BasicEnemy4" parent="." unique_id=769430971 instance=ExtResource("5_cb8w6")]
-position = Vector2(216.00003, 2.9999847)
+position = Vector2(191, -15.000008)
 health = 100
 power = 120
 defense = 100
@@ -82,25 +115,35 @@ enabled = false
 metadata/_edit_lock_ = true
 
 [node name="Position" parent="." unique_id=1069729204 instance=ExtResource("6_i3a13")]
-position = Vector2(-64, -192)
+position = Vector2(-59, 45)
 
 [node name="Position2" parent="." unique_id=2146862001 instance=ExtResource("6_i3a13")]
-position = Vector2(-64, -128)
+position = Vector2(-71, -2)
 
 [node name="Position3" parent="." unique_id=1005056990 instance=ExtResource("6_i3a13")]
-position = Vector2(-64, 0)
+position = Vector2(-118, 19)
 
 [node name="Position4" parent="." unique_id=1646326194 instance=ExtResource("6_i3a13")]
-position = Vector2(-64, -64)
+position = Vector2(-19, 20)
 
 [node name="PlayerSpawn" type="Node2D" parent="." unique_id=903334556]
 position = Vector2(-584, -64)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=541219624]
-y_sort_enabled = true
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=699902899]
 texture_filter = 1
-tile_map_data = PackedByteArray("AADo/wYAAAAAAAAAAADp/wYAAAAAAAAAAADq/wYAAAAAAAAAAADr/wYAAAAAAAAAAADs/wYAAAAAAAAAAADt/wYAAAAAAAAAAADu/wYAAAAAAAAAAADv/wYAAAAAAAAAAADw/wYAAAAAAAAAAADx/wYAAAAAAAAAAADy/wYAAAAAAAAAAADz/wYAAAAAAAAAAAD0/wYAAAAAAAAAAAD1/wYAAAAAAAAAAAD2/wYAAAAAAAAAAAD3/wYAAAAAAAAAAAD4/wYAAAAAAAAAAAD5/wYAAAAAAAAAAAD6/wYAAAAAAAAAAAD7/wYAAAAAAAAAAADt/wMAAAAAAAAAAADu/wMAAAAAAAAAAADv/wMAAAAAAAAAAADw/wMAAAAAAAAAAADx/wMAAAAAAAAAAADy/wMAAAAAAAAAAADz/wIAAAAAAAAAAADz/wMAAAAAAAAAAAD0/wIAAAAAAAAAAAD0/wMAAAAAAAAAAAD1/wIAAAAAAAAAAAD1/wMAAAAAAAAAAAD2/wIAAAAAAAAAAAD2/wMAAAAAAAAAAAD3/wIAAAAAAAAAAAD3/wMAAAAAAAAAAAD4/wIAAAAAAAAAAAD4/wMAAAAAAAAAAAD5/wIAAAAAAAAAAAD5/wMAAAAAAAAAAAD6/wIAAAAAAAAAAAD6/wMAAAAAAAAAAAD7/wIAAAAAAAAAAAD7//7/AAAAAAAAAAD6////AAAAAAAAAAD6//7/AAAAAAAAAAD5//3/AAAAAAAAAAD5//7/AAAAAAAAAAD4//3/AAAAAAAAAAD3//3/AAAAAAAAAAD3//7/AAAAAAAAAAD2////AAAAAAAAAAD2//7/AAAAAAAAAAD3////AAAAAAAAAAD4/wAAAAAAAAAAAAD4////AAAAAAAAAAD1////AAAAAAAAAAD1//7/AAAAAAAAAAD0////AAAAAAAAAAD0//7/AAAAAAAAAADz////AAAAAAAAAADz//7/AAAAAAAAAADy////AAAAAAAAAADy//7/AAAAAAAAAADx////AAAAAAAAAADx//7/AAAAAAAAAADw////AAAAAAAAAADw//7/AAAAAAAAAADv////AAAAAAAAAADv//7/AAAAAAAAAADu////AAAAAAAAAADu//7/AAAAAAAAAADt////AAAAAAAAAADt/wAAAAAAAAAAAADu/wAAAAAAAAAAAADv/wAAAAAAAAAAAADv/wEAAAAAAAAAAADw/wAAAAAAAAAAAADx/wAAAAAAAAAAAADx/wEAAAAAAAAAAADy/wAAAAAAAAAAAADy/wEAAAAAAAAAAADt//v/AAAAAAAAAADu//r/AAAAAAAAAADu//v/AAAAAAAAAADv//r/AAAAAAAAAADv//v/AAAAAAAAAADw//r/AAAAAAAAAADw//v/AAAAAAAAAADx//r/AAAAAAAAAADx//v/AAAAAAAAAADy//r/AAAAAAAAAADy//v/AAAAAAAAAADz//r/AAAAAAAAAADz//n/AAAAAAAAAAD0//r/AAAAAAAAAAD0//n/AAAAAAAAAAD1//r/AAAAAAAAAAD1//n/AAAAAAAAAAD2//r/AAAAAAAAAAD2//v/AAAAAAAAAAD3//r/AAAAAAAAAAD3//v/AAAAAAAAAAD4//r/AAAAAAAAAAD4//v/AAAAAAAAAAD5//r/AAAAAAAAAAD5//v/AAAAAAAAAAD6//r/AAAAAAAAAAD6//v/AAAAAAAAAAD5////AAAAAAAAAADz//z/AAAAAAAAAADz//v/AAAAAAAAAAD0//z/AAAAAAAAAAD0//v/AAAAAAAAAAD1//v/AAAAAAAAAAA=")
-tile_set = SubResource("TileSet_vm6i5")
+position = Vector2(156, -24.000008)
+rotation = 0.027806275
+scale = Vector2(1.0293417, 1.0768255)
+tile_map_data = PackedByteArray("AAD//wAAAgAAAAAAAAD/////AgAAAAAAAAAAAP//AgAAAAAAAAAAAAAAAgAAAAAAAAABAAAAAgAAAAAAAAABAP//AgAAAAAAAAABAP7/AgAAAAAAAAAAAP7/AgAAAAAAAAD///7/AgAAAAAAAAD+////AgAAAAAAAAD+/wAAAgAAAAAAAAD+//7/AgAAAAAAAAD9////AgAAAAAAAAD9//7/AgAAAAAAAAD9/wAAAgAAAAAAAAACAP7/AgAAAAAAAAACAP//AgAAAAAAAAACAAAAAgAAAAAAAAD8//7/AgAAAAAAAAD8////AgAAAAAAAAD8/wAAAgAAAAAAAAA=")
+tile_set = SubResource("TileSet_htavv")
+metadata/_edit_lock_ = true
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=863281569]
+texture_filter = 1
+position = Vector2(-8, -57.000008)
+rotation = 0.037341896
+tile_map_data = PackedByteArray("AAD+////BAAAAAAAAAD///7/BAAAAAAAAAABAPz/BAAAAAAAAAACAPv/BAAAAAAAAAAAAP3/BAAAAAAAAAADAPr/BAAAAAAAAAD9/wAABAAAAAAAAAD8/wEABAAAAAAAAAD7/wIABAAAAAAAAAA=")
+tile_set = SubResource("TileSet_dw67t")
+metadata/_edit_lock_ = true
 
 [connection signal="player_won" from="." to="." method="_on_player_won"]
-[connection signal="area_entered" from="Door" to="." method="_on_door_area_entered"]

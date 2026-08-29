@@ -13,7 +13,7 @@ var spy_scene = preload("res://basic_spy.tscn")
 
 var freePosition
 
-func _on_door_area_entered(area: Area2D) -> void:
+func _ready() -> void:
 	$Camera2D.enabled = true
 	var player = get_tree().get_nodes_in_group("player")[0]
 	player.visible = false
@@ -28,8 +28,8 @@ func _on_door_area_entered(area: Area2D) -> void:
 		spies[n].rotation = 0
 		spies[n].velocity = Vector2.ZERO
 
-	$Door.queue_free()
 	combatLoop()
+	
 
 func _input(event: InputEvent) -> void:
 	if not playerTurn:
@@ -69,6 +69,7 @@ func _input(event: InputEvent) -> void:
 			if !position.taken:
 				position.taken = false
 				freePosition = position
+				position.taken = true
 		new_spy.global_position = freePosition.global_position
 		new_spy.battleMode = true
 		new_spy.add_to_group("allies")

@@ -1,0 +1,78 @@
+[gd_scene format=4 uid="uid://yrvyk2g4dvqu"]
+
+[ext_resource type="Texture2D" uid="uid://cq55kvlup0s24" path="res://cena/tiledodiabo2.png" id="1_kb5x2"]
+[ext_resource type="Texture2D" uid="uid://tpflrkh4p4xk" path="res://cena/paredes.png" id="2_g8fis"]
+[ext_resource type="Texture2D" uid="uid://vtufx2qmw5w8" path="res://cena/paredes1.png" id="3_pjjw4"]
+[ext_resource type="Texture2D" uid="uid://umtbimnxe5y0" path="res://cena/tiledodiabo.png" id="4_3rpod"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_20ugn"]
+texture = ExtResource("1_kb5x2")
+texture_region_size = Vector2i(128, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w3kui"]
+texture = ExtResource("2_g8fis")
+texture_region_size = Vector2i(64, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(-26, 37)
+0:0/0/z_index = 1
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sh5jk"]
+texture = ExtResource("3_pjjw4")
+texture_region_size = Vector2i(128, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fvqyu"]
+texture = ExtResource("4_3rpod")
+texture_region_size = Vector2i(39, 39)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_brh18"]
+tile_shape = 1
+tile_layout = 4
+tile_size = Vector2i(128, 32)
+sources/2 = SubResource("TileSetAtlasSource_20ugn")
+sources/3 = SubResource("TileSetAtlasSource_w3kui")
+sources/4 = SubResource("TileSetAtlasSource_sh5jk")
+sources/5 = SubResource("TileSetAtlasSource_fvqyu")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vie2r"]
+texture = ExtResource("1_kb5x2")
+texture_region_size = Vector2i(128, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kbafg"]
+texture = ExtResource("2_g8fis")
+texture_region_size = Vector2i(64, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(-26, 37)
+0:0/0/z_index = 1
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3rsev"]
+texture = ExtResource("3_pjjw4")
+texture_region_size = Vector2i(52, 110)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_g8ucq"]
+tile_layout = 4
+tile_size = Vector2i(48, 13)
+sources/2 = SubResource("TileSetAtlasSource_vie2r")
+sources/3 = SubResource("TileSetAtlasSource_kbafg")
+sources/4 = SubResource("TileSetAtlasSource_3rsev")
+
+[node name="Hallway" type="Node2D" unique_id=118524634]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1705480048]
+texture_filter = 1
+position = Vector2(156, -24.000008)
+rotation = 0.027806275
+scale = Vector2(1.0293417, 1.0768255)
+tile_map_data = PackedByteArray("AAD//wAAAgAAAAAAAAD/////AgAAAAAAAAAAAP//AgAAAAAAAAAAAAAAAgAAAAAAAAABAAAAAgAAAAAAAAABAP//AgAAAAAAAAABAP7/AgAAAAAAAAAAAP7/AgAAAAAAAAD///7/AgAAAAAAAAD+////AgAAAAAAAAD+/wAAAgAAAAAAAAD+//7/AgAAAAAAAAD9////AgAAAAAAAAD9//7/AgAAAAAAAAD9/wAAAgAAAAAAAAACAP7/AgAAAAAAAAACAP//AgAAAAAAAAACAAAAAgAAAAAAAAD8//7/AgAAAAAAAAD8////AgAAAAAAAAD8/wAAAgAAAAAAAAADAAAAAgAAAAAAAAADAP7/AgAAAAAAAAADAP//AgAAAAAAAAAEAP7/AgAAAAAAAAAEAP//AgAAAAAAAAAEAAAAAgAAAAAAAAAFAAAAAgAAAAAAAAAFAP//AgAAAAAAAAAFAP7/AgAAAAAAAAAGAP7/AgAAAAAAAAAGAP//AgAAAAAAAAAGAAAAAgAAAAAAAAA=")
+tile_set = SubResource("TileSet_brh18")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=1964102104]
+z_index = 1
+texture_filter = 1
+position = Vector2(-8, -57.000008)
+rotation = 0.037341896
+tile_map_data = PackedByteArray("AAD+////BAAAAAAAAAD///7/BAAAAAAAAAABAPz/BAAAAAAAAAACAPv/BAAAAAAAAAAAAP3/BAAAAAAAAAADAPr/BAAAAAAAAAD9/wAABAAAAAAAAAD7/wIABAAAAAAAAAD8/wEABAAAAAAAAAAEAPn/BAAAAAAAAAAFAPj/BAAAAAAAAAAGAPf/BAAAAAAAAAAHAPb/BAAAAAAAAAAJAPb/AwAAAAAAAAAIAPX/BAAAAAAAAAA=")
+tile_set = SubResource("TileSet_g8ucq")

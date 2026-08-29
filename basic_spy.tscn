@@ -13,6 +13,8 @@ size = Vector2(160, 160)
 font_size = 65
 
 [node name="BasicSpy" type="CharacterBody2D" unique_id=233415787]
+z_index = 1
+rotation = 0.2443461
 scale = Vector2(0.3, 0.3)
 motion_mode = 1
 script = ExtResource("1_v7w05")
