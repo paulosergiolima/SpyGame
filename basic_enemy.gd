@@ -22,6 +22,7 @@ func _ready() -> void:
 	$Price.text = str(price)
 	$Attack.text = str(power)
 	$Defense.text = str(defense)
+	play("default")
 	pass # Replace with function body.
 
 func updateHealth():
@@ -43,4 +44,9 @@ func attack():
 	playerUnits[randomNumber].health = currentEnemy.health - clampi(dano,0,1000)
 	playerUnits[randomNumber].updateHealth()
 	
+func playAimed() -> void:
+	play("aimed")
+
+func stopAimed() -> void:
+	play("default")
 	

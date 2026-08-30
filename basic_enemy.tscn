@@ -1,9 +1,30 @@
 [gd_scene format=3 uid="uid://t2s2o1a08e6u"]
 
 [ext_resource type="Texture2D" uid="uid://c34yggw1aw60o" path="res://assets/enemy/std-pose2.png" id="1_m2rku"]
-[ext_resource type="Texture2D" uid="uid://oqed1mgajlqj" path="res://assets/enemy/enemy-aim.png" id="1_t1tcq"]
+[ext_resource type="Texture2D" uid="uid://dyltlhv7kxuje" path="res://assets/enemy/hover-enemy.png" id="1_t1tcq"]
 [ext_resource type="Script" uid="uid://c25f3cca1d40d" path="res://basic_enemy.gd" id="2_m2rku"]
 [ext_resource type="Texture2D" uid="uid://f8fxpkgw7yef" path="res://assets/enemy/tiro2.png" id="2_t1tcq"]
+[ext_resource type="Texture2D" uid="uid://cwgdumaedh67r" path="res://assets/coin.png" id="5_05t60"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyo5r"]
+atlas = ExtResource("1_t1tcq")
+region = Rect2(0, 0, 48, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30eta"]
+atlas = ExtResource("1_t1tcq")
+region = Rect2(48, 0, 48, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlab8"]
+atlas = ExtResource("1_t1tcq")
+region = Rect2(96, 0, 48, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elpyn"]
+atlas = ExtResource("1_t1tcq")
+region = Rect2(144, 0, 48, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7e568"]
+atlas = ExtResource("1_t1tcq")
+region = Rect2(192, 0, 48, 75)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_05t60"]
 atlas = ExtResource("2_t1tcq")
@@ -57,7 +78,19 @@ region = Rect2(528, 0, 48, 75)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_t1tcq")
+"texture": SubResource("AtlasTexture_eyo5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30eta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rlab8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_elpyn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7e568")
 }],
 "loop": 1,
 "name": &"aimed",
@@ -114,45 +147,41 @@ animations = [{
 }]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vm6i5"]
-font_size = 45
 
 [node name="BasicEnemy" type="AnimatedSprite2D" unique_id=1099056567 groups=["enemies"]]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_vm6i5")
-animation = &"shooting"
-frame = 1
-frame_progress = 0.4699615
 script = ExtResource("2_m2rku")
 
 [node name="Health" type="Label" parent="." unique_id=1106988637]
-offset_left = 80.0
-offset_top = 26.666662
-offset_right = 157.0
-offset_bottom = 89.666664
-rotation = -1.5707964
+offset_left = -57.0
+offset_top = -16.0
+offset_right = -29.0
+offset_bottom = 8.0
 text = "100"
 label_settings = SubResource("LabelSettings_vm6i5")
 
 [node name="Price" type="Label" parent="." unique_id=170357444]
-offset_left = -56.900158
-offset_top = -62.237324
-offset_right = -16.900158
-offset_bottom = -39.237324
-rotation = 4.6896996
+offset_left = -16.0
+offset_top = -61.0
+offset_right = 16.900158
+offset_bottom = -38.0
 text = "100"
 
 [node name="Attack" type="Label" parent="." unique_id=1065827945]
-offset_left = -32.538933
-offset_top = -73.083626
-offset_right = 7.461067
-offset_bottom = -50.083626
-rotation = 4.7787113
+offset_left = 24.0
+offset_top = -40.0
+offset_right = 64.0
+offset_bottom = -17.0
 text = "100"
 
 [node name="Defense" type="Label" parent="." unique_id=1528400999]
-offset_left = -8.177729
-offset_top = -83.92995
-offset_right = 31.822271
-offset_bottom = -60.929947
-rotation = 4.7787113
+offset_left = 32.0
+offset_top = -17.0
+offset_right = 72.0
+offset_bottom = 6.0
 text = "100"
+
+[node name="Coin" type="Sprite2D" parent="." unique_id=1056374943]
+position = Vector2(-29, -48)
+texture = ExtResource("5_05t60")

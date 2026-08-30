@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SpyGame"
-run/main_scene="uid://ce0qnd3xvd6qf"
+run/main_scene="uid://tri1advn5tkv"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 

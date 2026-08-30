@@ -192,11 +192,9 @@ size = Vector2(128, 128)
 size = Vector2(160, 160)
 
 [sub_resource type="LabelSettings" id="LabelSettings_cb8w6"]
-font_size = 65
 
 [node name="BasicSpy" type="CharacterBody2D" unique_id=233415787]
 z_index = 1
-rotation = 0.2443461
 motion_mode = 1
 script = ExtResource("1_v7w05")
 
@@ -217,13 +215,12 @@ shape = SubResource("RectangleShape2D_h3wf7")
 debug_color = Color(0.959721, 2.8878452e-07, 0.52274275, 0.41960785)
 
 [node name="Health" type="Label" parent="." unique_id=1432445843]
-offset_left = -53.333332
-offset_top = 80.0
-offset_right = 58.666668
-offset_bottom = 170.0
+offset_left = -56.0
+offset_top = -8.0
+offset_right = -24.0
+offset_bottom = 16.0
 text = "100"
 label_settings = SubResource("LabelSettings_cb8w6")
-metadata/_edit_lock_ = true
 
 [node name="Power" type="Label" parent="." unique_id=1766854912]
 offset_left = 90.5957

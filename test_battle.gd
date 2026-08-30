@@ -132,10 +132,10 @@ func _input(event: InputEvent) -> void:
 	var chosenEnemy = enemies[chosenAlly]
 
 	if event.is_action_pressed("up"):
-		chosenEnemy.global_rotation = PI / 2
+		chosenEnemy.stopAimed()
 		goUp(enemies.size())
 	elif event.is_action_pressed("down"):
-		chosenEnemy.global_rotation = PI / 2
+		chosenEnemy.stopAimed()
 		goDown(enemies.size())
 	elif event.is_action_pressed("attack"):
 		print("Poder do current : ", currentSpy.power, "  Defesa do inimigo: ", chosenEnemy.defense)
@@ -143,7 +143,7 @@ func _input(event: InputEvent) -> void:
 		var dano = currentSpy.power * (100.0 / (100.0 + chosenEnemy.defense))
 		chosenEnemy.health -= clampi(dano, 0, 1000)
 		chosenEnemy.updateHealth()
-		chosenEnemy.global_rotation = PI / 2
+		#chosenEnemy.global_rotation = PI / 2
 		playerTurn = false
 		# Remove from the group BEFORE emitting, so combatLoop (which resumes
 		# synchronously insidef emit()) sees accurate group membership.
@@ -151,6 +151,8 @@ func _input(event: InputEvent) -> void:
 			release_position_for_unit(chosenEnemy)
 			chosenEnemy.remove_from_group("enemies")
 			chosenEnemy.queue_free()
+		else:
+			chosenEnemy.stopAimed()
 		turn_finished.emit()
 		return
 	elif event.is_action_pressed("buySpy") and playerSize < 4:
@@ -189,7 +191,7 @@ func _input(event: InputEvent) -> void:
 
 	enemies = get_tree().get_nodes_in_group("enemies")
 	if chosenAlly < enemies.size():
-		enemies[chosenAlly].global_rotation = 0
+		enemies[chosenAlly].playAimed()
 
 func handle_shop_input(event: InputEvent) -> void:
 	var allies = get_tree().get_nodes_in_group("allies")
@@ -328,7 +330,7 @@ func defect_ally_to_enemy(ally) -> void:
 	print("Um aliado não pago desertou para o inimigo!")
 
 func _on_money_changed(money: Variant) -> void:
-	$CurrentMoney.text = "Money: " + str(money)
+	$CurrentMoney.text = str(money)
 
 func room_can_support_enemy(enemy_cost: int) -> bool:
 	return room_spend + enemy_cost <= room_budget
