@@ -18,15 +18,12 @@ rotation = 0.2443461
 scale = Vector2(0.3, 0.3)
 motion_mode = 1
 script = ExtResource("1_v7w05")
-
-[node name="Price" type="Label" parent="." unique_id=357022870]
-visible = false
-offset_left = -32.0
-offset_top = -96.0
-offset_right = 29.0
-offset_bottom = -73.0
-text = "10 reais"
-metadata/_edit_lock_ = true
+price = null
+health = null
+power = null
+defense = null
+random = null
+followingPlayer = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=16128191]
 texture = ExtResource("1_ivvnv")
@@ -66,6 +63,10 @@ offset_right = 137.04695
 offset_bottom = -28.67955
 text = "100"
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="Paid" type="Label" parent="." unique_id=1743678496]
+visible = false
+offset_left = -25.805
+offset_top = -103.4982
+offset_right = 31.195
+offset_bottom = -80.4982
+text = "Not yet"

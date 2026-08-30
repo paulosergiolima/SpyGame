@@ -9,7 +9,15 @@ var bought: bool
 const SPEED = 300.0
 var battleMode: bool = false
 const JUMP_VELOCITY = -400.0
+var paid: bool = true
 @export var followingPlayer: bool = false
+
+func inPayingMode():
+	$Paid.text = "Not yet paid"
+	$Paid.visible = true
+
+func paid():
+	$Paid.visible = false
 
 func _ready() -> void:
 	if random:
@@ -24,14 +32,3 @@ func updateHealth():
 	$Health.text = str(health)
 	if health <= 0:
 		queue_free()
-
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if !followingPlayer:
-		$Price.visible = true
-	pass # Replace with function body.
-
-
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	$Price.visible = false
-	pass # Replace with function body.

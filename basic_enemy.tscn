@@ -12,10 +12,6 @@ rotation = 1.9896754
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_rwafm")
 script = ExtResource("2_m2rku")
-health = null
-power = null
-defense = null
-price = null
 
 [node name="Health" type="Label" parent="." unique_id=1106988637]
 offset_left = 80.0
@@ -25,3 +21,11 @@ offset_bottom = 89.666664
 rotation = -1.5707964
 text = "100"
 label_settings = SubResource("LabelSettings_vm6i5")
+
+[node name="Price" type="Label" parent="." unique_id=170357444]
+offset_left = -56.900158
+offset_top = -62.237324
+offset_right = -16.900158
+offset_bottom = -39.237324
+rotation = 4.6896996
+text = "100"

@@ -116,31 +116,33 @@ func _input(event: InputEvent) -> void:
 		chosenEnemy.global_rotation = PI / 2
 		playerTurn = false
 		# Remove from the group BEFORE emitting, so combatLoop (which resumes
-		# synchronously inside emit()) sees accurate group membership.
+		# synchronously insidef emit()) sees accurate group membership.
 		if chosenEnemy.health <= 0:
 			chosenEnemy.remove_from_group("enemies")
 			chosenEnemy.queue_free()
 		turn_finished.emit()
 		return
 	elif event.is_action_pressed("buySpy") and playerSize < 4:
-		print(chosenEnemy.price)
 		var variables = $"/root/PlayerVariables"
+		
+		freePosition = null
 		if not variables.can_afford_player(chosenEnemy.price):
 			print("Você não tem dinheiro suficiente")
 			return
-		variables.spend_player(chosenEnemy.price)
-		moneyChanged.emit(variables.money)
-		var new_spy = spy_scene.instantiate()
-		new_spy.health = chosenEnemy.health
-		new_spy.power = chosenEnemy.power
-		new_spy.defense = chosenEnemy.defense
-		freePosition = null
 		for position in get_tree().get_nodes_in_group("positions"):
+			print(position.taken)
 			if !position.taken:
 				freePosition = position
 				break
 		if freePosition == null:
 			return
+		variables.spend_player(chosenEnemy.price)
+		moneyChanged.emit(variables.money)
+		var new_spy = spy_scene.instantiate()
+		new_spy.random = false
+		new_spy.health = chosenEnemy.health
+		new_spy.power = chosenEnemy.power
+		new_spy.defense = chosenEnemy.defense
 		reserve_position_for_unit(new_spy, freePosition)
 		new_spy.global_position = freePosition.global_position
 		new_spy.battleMode = true
@@ -185,6 +187,7 @@ func combatLoop() -> void:
 		combatants.append_array(allies)
 		combatants.append_array(enemies)
 		combatants.shuffle()
+		$TurnOrder.text = "Ordem dos turnos: " + str(combatants)
 
 		for unit in combatants:
 			if not is_instance_valid(unit):
@@ -245,3 +248,8 @@ func createEnemy(budget: int):
 	enemy.defense = c
 	enemy.health = b
 	return enemy
+
+
+func _on_player_lost() -> void:
+	$Lost.visible = true
+	pass # Replace with function body.

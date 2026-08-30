@@ -15,7 +15,9 @@ func _ready() -> void:
 	#power = (randi_range(0, 100) + randi_range(0, 100) + randi_range(0,100)) / 3
 	#defense = (randi_range(0, 100) + randi_range(0, 100) + randi_range(0,100)) / 3
 	#recalculate_price()
+	recalculate_price()
 	$Health.text = str(health)
+	$Price.text = str(price)
 	pass # Replace with function body.
 
 func updateHealth():
