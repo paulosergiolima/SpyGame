@@ -5,14 +5,19 @@ signal player_lost
 signal player_won
 signal moneyChanged(money)
 
-
 var chosenAlly = 0
 var playerTurn: bool = false
 var currentSpy
 @export var current_level: int = 1
-@export var base_room_budget: int = 100
-@export var room_budget: int = 200
+@export var base_room_budget: int = 10
+@export var room_budget: int = 100
 var room_spend
+const MIN_ENEMY_BUDGET_RATIO := 0.15
+
+const DEFECTION_CHANCE := 0.3
+const PAYMENT_RATE := 0.5
+var in_shop_phase: bool = false
+var chosenSpyIndex: int = 0
 
 var player_scene = preload("res://player.tscn")
 var spy_scene = preload("res://basic_spy.tscn")
@@ -20,6 +25,7 @@ var enemy_scene = preload("res://basic_enemy.tscn")
 
 var freePosition
 
+var lostState = false
 func begin_new_room() -> void:
 	room_spend = 0
 	room_budget = base_room_budget + ((current_level - 1) * 150)
@@ -35,7 +41,7 @@ func _ready() -> void:
 		spies[n].battleMode = true
 		spies[n].global_position = positions[n].global_position
 		reserve_position_for_unit(spies[n], positions[n])
-		spies[n].rotation = 0
+		spies[n].stopHover()
 		spies[n].velocity = Vector2.ZERO
 
 	combatLoop()
@@ -43,18 +49,22 @@ func _ready() -> void:
 func clear_room_enemies() -> void:
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		if is_instance_valid(enemy):
+			release_position_for_unit(enemy) 
 			enemy.queue_free()
 
 func build_room_from_budget() -> void:
 	clear_room_enemies()
 	var enemy_slots = get_tree().get_nodes_in_group("enemyPositions")
+	var min_enemy_cost = int(room_budget * MIN_ENEMY_BUDGET_RATIO)
 	for slot in enemy_slots:
-		if room_spend >= room_budget:
+		var remaining = room_budget - room_spend
+		if remaining < min_enemy_cost:
 			break
 		var enemy_cost: int = randi_range(3, room_budget - room_spend)
 		var enemy = createEnemy(enemy_cost)
 		enemy.global_position = slot.global_position
 		enemy.add_to_group("enemies")
+		reserve_position_for_unit(enemy, slot)
 		add_child(enemy)
 		room_spend_enemy(enemy_cost)
 
@@ -81,17 +91,36 @@ func cleanup_dead_allies() -> void:
 		ally.remove_from_group("allies")
 		ally.queue_free()
 
-
 func advance_to_next_room() -> void:
 	var variables = $"/root/PlayerVariables"
-	variables.reward(100 * current_level)
+	variables.reward(45 * current_level)
 	moneyChanged.emit(variables.money)
 	complete_room()
-	build_room_from_budget()
+	reset_payments_for_new_room()
+	enter_shop_phase()
 	print("Sala vencida. Próximo nível: ", current_level)
 	print("Orçamento da próxima sala: ", room_budget)
+	
+func reset_payments_for_new_room() -> void:
+	for ally in get_tree().get_nodes_in_group("allies"):
+		if is_instance_valid(ally):
+			ally.paid = false
+			ally.inPayingMode()
+
+func enter_shop_phase() -> void:
+	in_shop_phase = true
+	chosenSpyIndex = 0
+	playerTurn = false
+	print("Fase de pagamento: pague seus aliados e aperte 'start_combat' para continuar")
 
 func _input(event: InputEvent) -> void:
+	if lostState:
+		if event.is_action_pressed("restart"):
+			restart_game()
+		return
+	if in_shop_phase:
+		handle_shop_input(event)
+		return
 	if not playerTurn:
 		return
 	var playerSize = get_tree().get_nodes_in_group("allies").size()
@@ -110,6 +139,7 @@ func _input(event: InputEvent) -> void:
 		goDown(enemies.size())
 	elif event.is_action_pressed("attack"):
 		print("Poder do current : ", currentSpy.power, "  Defesa do inimigo: ", chosenEnemy.defense)
+		currentSpy.playAttack()
 		var dano = currentSpy.power * (100.0 / (100.0 + chosenEnemy.defense))
 		chosenEnemy.health -= clampi(dano, 0, 1000)
 		chosenEnemy.updateHealth()
@@ -118,6 +148,7 @@ func _input(event: InputEvent) -> void:
 		# Remove from the group BEFORE emitting, so combatLoop (which resumes
 		# synchronously insidef emit()) sees accurate group membership.
 		if chosenEnemy.health <= 0:
+			release_position_for_unit(chosenEnemy)
 			chosenEnemy.remove_from_group("enemies")
 			chosenEnemy.queue_free()
 		turn_finished.emit()
@@ -160,6 +191,48 @@ func _input(event: InputEvent) -> void:
 	if chosenAlly < enemies.size():
 		enemies[chosenAlly].global_rotation = 0
 
+func handle_shop_input(event: InputEvent) -> void:
+	var allies = get_tree().get_nodes_in_group("allies")
+	if allies.is_empty():
+		start_next_combat()
+		return
+	chosenSpyIndex = clamp(chosenSpyIndex, 0, allies.size() - 1)
+	var selected = allies[chosenSpyIndex]
+
+	if event.is_action_pressed("up"):
+		selected.stopHover()
+		if chosenSpyIndex != 0:
+			chosenSpyIndex -= 1
+	elif event.is_action_pressed("down"):
+		selected.stopHover()
+		if chosenSpyIndex != allies.size() - 1:
+			chosenSpyIndex += 1
+	elif event.is_action_pressed("pay"):
+		if selected.paid:
+			return
+		var variables = $"/root/PlayerVariables"
+		var cost = int(selected.price * PAYMENT_RATE)
+		if not variables.can_afford_player(cost):
+			print("Você não tem dinheiro suficiente para pagar esse aliado")
+			return
+		variables.spend_player(cost)
+		moneyChanged.emit(variables.money)
+		selected.paid = true
+		selected.gotPaid()
+	elif event.is_action_pressed("start_combat"):
+		start_next_combat()
+
+	allies = get_tree().get_nodes_in_group("allies")
+	if chosenSpyIndex < allies.size():
+		allies[chosenSpyIndex].playHover()
+
+func start_next_combat() -> void:
+	in_shop_phase = false
+	build_room_from_budget()
+	print("Próximo nível: ", current_level)
+	print("Orçamento da próxima sala: ", room_budget)
+	combatLoop()
+
 func allyAttack(ally) -> void:
 	currentSpy = ally
 	chosenAlly = 0
@@ -187,7 +260,6 @@ func combatLoop() -> void:
 		combatants.append_array(allies)
 		combatants.append_array(enemies)
 		combatants.shuffle()
-		$TurnOrder.text = "Ordem dos turnos: " + str(combatants)
 
 		for unit in combatants:
 			if not is_instance_valid(unit):
@@ -205,24 +277,58 @@ func combatLoop() -> void:
 			if unit.is_in_group("allies"):
 				if get_tree().get_nodes_in_group("enemies").is_empty():
 					continue
-				unit.global_rotation = 90
+				if try_defect(unit):
+					continue
+				unit.playHover()
 				allyAttack(unit)
 				await turn_finished
-				if is_instance_valid(unit):
-					unit.global_rotation = 0
 				if get_tree().get_nodes_in_group("enemies").is_empty():
 					player_won.emit()
+					return
 			else:
 				unit.attack()
 				cleanup_dead_allies()
 
+func try_defect(ally) -> bool:
+	if ally.paid:
+		return false
+	if not has_free_enemy_slot():
+		return false
+	if randf() < DEFECTION_CHANCE:
+		defect_ally_to_enemy(ally)
+		return true
+	return false
 
 func _on_player_won() -> void:
 	advance_to_next_room()
 
+func defect_ally_to_enemy(ally) -> void:
+	var free_slot = null
+	for slot in get_tree().get_nodes_in_group("enemyPositions"):
+		if not slot.taken:
+			free_slot = slot
+			break
+	if free_slot == null:
+		return  # segurança extra — não deveria cair aqui já que checamos antes
+
+	release_position_for_unit(ally)
+	ally.remove_from_group("allies")
+
+	var betrayer = enemy_scene.instantiate()
+	betrayer.health = ally.health
+	betrayer.power = ally.power
+	betrayer.defense = ally.defense
+	betrayer.global_position = free_slot.global_position
+	betrayer.add_to_group("enemies")
+	add_child(betrayer)
+	betrayer.recalculate_price()
+	reserve_position_for_unit(betrayer, free_slot)
+
+	ally.queue_free()
+	print("Um aliado não pago desertou para o inimigo!")
 
 func _on_money_changed(money: Variant) -> void:
-	$CurrentMoney.text = "Dinheiro: " + str(money)
+	$CurrentMoney.text = "Money: " + str(money)
 
 func room_can_support_enemy(enemy_cost: int) -> bool:
 	return room_spend + enemy_cost <= room_budget
@@ -235,7 +341,7 @@ func room_spend_enemy(enemy_cost: int) -> bool:
 
 func complete_room() -> void:
 	current_level += 1
-	base_room_budget += 100
+	base_room_budget += 10
 	room_budget = base_room_budget + ((current_level - 1) * 150)
 	room_spend = 0
 
@@ -249,7 +355,19 @@ func createEnemy(budget: int):
 	enemy.health = b
 	return enemy
 
-
 func _on_player_lost() -> void:
+	lostState = true
 	$Lost.visible = true
 	pass # Replace with function body.
+
+func has_free_enemy_slot() -> bool:
+	for slot in get_tree().get_nodes_in_group("enemyPositions"):
+		if not slot.taken:
+			return true
+	return false
+
+func restart_game():
+	var variables = $"/root/PlayerVariables"
+	if variables.has_method("reset"):
+		variables.reset()
+	get_tree().reload_current_scene()

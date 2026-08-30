@@ -1,4 +1,4 @@
-extends Sprite2D
+extends AnimatedSprite2D
 
 @export var health: int = 100
 @export var power: int = 120
@@ -15,9 +15,13 @@ func _ready() -> void:
 	#power = (randi_range(0, 100) + randi_range(0, 100) + randi_range(0,100)) / 3
 	#defense = (randi_range(0, 100) + randi_range(0, 100) + randi_range(0,100)) / 3
 	#recalculate_price()
+	if health == 0:
+		health = 1
 	recalculate_price()
 	$Health.text = str(health)
 	$Price.text = str(price)
+	$Attack.text = str(power)
+	$Defense.text = str(defense)
 	pass # Replace with function body.
 
 func updateHealth():
@@ -38,3 +42,5 @@ func attack():
 	var dano = power * (100.0 / (100.0 + playerUnits[randomNumber].defense))
 	playerUnits[randomNumber].health = currentEnemy.health - clampi(dano,0,1000)
 	playerUnits[randomNumber].updateHealth()
+	
+	

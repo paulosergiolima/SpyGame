@@ -13,3 +13,6 @@ func spend_player(cost: int) -> bool:
 
 func reward(amount: int) -> void:
 	money += max(0, amount)
+	
+func reset() -> void:
+	money = 100

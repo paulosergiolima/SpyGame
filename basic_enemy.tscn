@@ -1,16 +1,127 @@
 [gd_scene format=3 uid="uid://t2s2o1a08e6u"]
 
-[ext_resource type="Texture2D" uid="uid://cdm6l645ff0j5" path="res://icon.svg" id="1_rwafm"]
+[ext_resource type="Texture2D" uid="uid://c34yggw1aw60o" path="res://assets/enemy/std-pose2.png" id="1_m2rku"]
+[ext_resource type="Texture2D" uid="uid://oqed1mgajlqj" path="res://assets/enemy/enemy-aim.png" id="1_t1tcq"]
 [ext_resource type="Script" uid="uid://c25f3cca1d40d" path="res://basic_enemy.gd" id="2_m2rku"]
+[ext_resource type="Texture2D" uid="uid://f8fxpkgw7yef" path="res://assets/enemy/tiro2.png" id="2_t1tcq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05t60"]
+atlas = ExtResource("2_t1tcq")
+region = Rect2(0, 0, 48, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2wxn"]
+atlas = ExtResource("2_t1tcq")
+region = Rect2(48, 0, 48, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhlmc"]
+atlas = ExtResource("2_t1tcq")
+region = Rect2(96, 0, 48, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0e1n8"]
+atlas = ExtResource("2_t1tcq")
+region = Rect2(144, 0, 48, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxpuf"]
+atlas = ExtResource("2_t1tcq")
+region = Rect2(192, 0, 48, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_as3ya"]
+atlas = ExtResource("2_t1tcq")
+region = Rect2(240, 0, 48, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1u8dd"]
+atlas = ExtResource("2_t1tcq")
+region = Rect2(288, 0, 48, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xliao"]
+atlas = ExtResource("2_t1tcq")
+region = Rect2(336, 0, 48, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_leyx2"]
+atlas = ExtResource("2_t1tcq")
+region = Rect2(384, 0, 48, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42vto"]
+atlas = ExtResource("2_t1tcq")
+region = Rect2(432, 0, 48, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umk5j"]
+atlas = ExtResource("2_t1tcq")
+region = Rect2(480, 0, 48, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3t6n3"]
+atlas = ExtResource("2_t1tcq")
+region = Rect2(528, 0, 48, 75)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vm6i5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_t1tcq")
+}],
+"loop": 1,
+"name": &"aimed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_m2rku")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05t60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2wxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhlmc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0e1n8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxpuf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_as3ya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1u8dd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xliao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_leyx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42vto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umk5j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6n3")
+}],
+"loop": 1,
+"name": &"shooting",
+"speed": 5.0
+}]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vm6i5"]
 font_size = 45
 
-[node name="BasicEnemy" type="Sprite2D" unique_id=304625094 groups=["enemies"]]
+[node name="BasicEnemy" type="AnimatedSprite2D" unique_id=1099056567 groups=["enemies"]]
 z_index = 1
-rotation = 1.9896754
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_rwafm")
+sprite_frames = SubResource("SpriteFrames_vm6i5")
+animation = &"shooting"
+frame = 1
+frame_progress = 0.4699615
 script = ExtResource("2_m2rku")
 
 [node name="Health" type="Label" parent="." unique_id=1106988637]
@@ -28,4 +139,20 @@ offset_top = -62.237324
 offset_right = -16.900158
 offset_bottom = -39.237324
 rotation = 4.6896996
+text = "100"
+
+[node name="Attack" type="Label" parent="." unique_id=1065827945]
+offset_left = -32.538933
+offset_top = -73.083626
+offset_right = 7.461067
+offset_bottom = -50.083626
+rotation = 4.7787113
+text = "100"
+
+[node name="Defense" type="Label" parent="." unique_id=1528400999]
+offset_left = -8.177729
+offset_top = -83.92995
+offset_right = 31.822271
+offset_bottom = -60.929947
+rotation = 4.7787113
 text = "100"
